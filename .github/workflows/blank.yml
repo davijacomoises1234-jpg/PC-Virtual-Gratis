@@ -1,0 +1,15 @@
+name: Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Informações do PC
+        shell: powershell
+        run: |
+          Write-Host "Windows iniciado"
+          systeminfo
