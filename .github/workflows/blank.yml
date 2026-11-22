@@ -1,0 +1,29 @@
+name: Windows Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Verificar Windows
+        shell: powershell
+        run: |
+          Write-Host "===== WINDOWS ====="
+          systeminfo
+          Write-Host ""
+          Write-Host "===== USUARIO ====="
+          whoami
+          Write-Host ""
+          Write-Host "===== DISCO ====="
+          Get-PSDrive -PSProvider FileSystem
+
+      - name: Criar arquivo de teste
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\Desktop\Teste" | Out-Null
+          "Funcionou!" | Out-File "$env:USERPROFILE\Desktop\Teste\teste.txt"
+
+          Write-Host "Arquivo criado com sucesso."
